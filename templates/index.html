@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaadaTaranga - Sanskrit Chanting AI</title>
+    <meta name="description"
+        content="Generate high-quality Sanskrit chanting audio with correct rhythmic pronunciation.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <h1 class="logo">NaadaTaranga <i class="fa-solid fa-om"></i></h1>
+            <p class="tagline">Where Sanskrit Meets Rhythm & Sound</p>
+        </header>
+
+        <div class="glass-panel main-panel">
+            <div class="input-section">
+                <label for="sanskrit-input">Enter text in Devanagari</label>
+                <textarea id="sanskrit-input" placeholder="ॐ भूर्भुवः स्वः..." rows="4"></textarea>
+
+                <div class="mode-selector">
+                    <label>Chanting Style</label>
+                    <div class="mode-options">
+                        <label class="mode-radio">
+                            <input type="radio" name="chant-mode" value="normal">
+                            <span class="mode-label">Normal</span>
+                        </label>
+                        <label class="mode-radio">
+                            <input type="radio" name="chant-mode" value="rhythmic" checked>
+                            <span class="mode-label">Rhythmic</span>
+                        </label>
+                        <label class="mode-radio">
+                            <input type="radio" name="chant-mode" value="vedic">
+                            <span class="mode-label">Vedic</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mode-selector">
+                    <label>Chanda (Meter)</label>
+                    <select id="chanda-select" class="dropdown-select">
+                        <option value="anushtubh">Anushtubh (8 syllables/pada)</option>
+                        <option value="gayatri">Gayatri (8 syllables/pada)</option>
+                        <option value="pankti">Pankti (10 syllables/pada)</option>
+                        <option value="trishtubh">Trishtubh (11 syllables/pada)</option>
+                        <option value="jagati">Jagati (12 syllables/pada)</option>
+                        <option value="shikharini">Shikharini (17 syllables/pada)</option>
+                    </select>
+                </div>
+
+                <button id="chant-btn" class="primary-btn">
+                    <span class="btn-text">Generate Chant</span>
+                    <i class="fa-solid fa-music btn-icon"></i>
+                </button>
+            </div>
+
+            <div id="loading" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>Aligning Syllables & Rhythm...</p>
+            </div>
+
+            <div id="player-section" class="player-section hidden">
+                <h3 class="result-title">Chanting Audio Ready</h3>
+                <div class="audio-container">
+                    <audio id="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="text-preview">
+                    <h4>Parsed Rhythm:</h4>
+                    <p id="formatted-text"></p>
+                </div>
+            </div>
+
+            <div id="error-message" class="error-message hidden"></div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
